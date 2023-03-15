@@ -7,27 +7,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
 
 @Entity
-@Table(name = "categoria")
-public class Categoria implements Serializable {
+public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	private String nome;
+	private Boolean ativo;
 
-	public Categoria() {
-		super();
+	public Pessoa() {
+
 	}
 
-	public Categoria(Long codigo, String nome) {
+	public Pessoa(Long codigo, String nome, Boolean ativo) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
+		this.ativo = ativo;
 	}
 
 	public Long getCodigo() {
@@ -46,6 +45,14 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(codigo);
@@ -59,7 +66,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Pessoa other = (Pessoa) obj;
 		return Objects.equals(codigo, other.codigo);
 	}
 
