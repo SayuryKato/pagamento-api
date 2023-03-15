@@ -1,4 +1,4 @@
-package uea.pagamentos_api.models;
+package uea.pagamentos_api.models.enums;
 
 public enum TipoLancamento {
 	

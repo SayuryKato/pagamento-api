@@ -1,7 +1,6 @@
 package uea.pagamentos_api.models;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -9,11 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import uea.pagamentos_api.models.enums.TipoLancamento;
 
 @Entity
 public class Lancamento implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	// private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
