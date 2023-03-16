@@ -32,8 +32,17 @@ public class PessoaService {
 		pessoaRepository.deleteById(codigo);
 	}
 	
+	public Pessoa atualizarPropriedadeAtivo(Long codigo,
+			Boolean ativo) {
+		Pessoa pessoaSalva = pessoaRepository.findById(codigo).
+				orElseThrow();
+		pessoaSalva.setAtivo(ativo);
+		return pessoaRepository.save(pessoaSalva);
+	}
+	
 	public Pessoa atualizar(Long codigo, Pessoa pessoa) {
-		Pessoa pessoaSalva = pessoaRepository.findById(codigo).orElseThrow();
+		Pessoa pessoaSalva = pessoaRepository.
+				findById(codigo).orElseThrow();
 		BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
 		return pessoaRepository.save(pessoaSalva);
 	}

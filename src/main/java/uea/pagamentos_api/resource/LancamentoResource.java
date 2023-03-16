@@ -15,45 +15,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import jakarta.validation.Valid;
 import uea.pagamentos_api.models.Lancamento;
+import uea.pagamentos_api.repositories.filters.LancamentoFilter;
 import uea.pagamentos_api.services.LancamentoService;
+import uea.pagamentos_api_dto.ResumoLancamentoDTO;
 
 
 @RestController
 @RequestMapping("/lancamentos")
 public class LancamentoResource {
-	
+
 	@Autowired
 	private LancamentoService lancamentoService;
 	
+	
+
 	@PostMapping
-	public ResponseEntity<Lancamento> criar(@RequestBody Lancamento lancamento){
-		Lancamento lancamentoSalva = lancamentoService.criar(lancamento);		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{codigo}").buildAndExpand(lancamentoSalva.getCodigo()).toUri();
+	public ResponseEntity<Lancamento> criar(@Valid @RequestBody Lancamento lancamento) {
+		Lancamento lancamentoSalva = lancamentoService.criar(lancamento);
+
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{codigo}")
+				.buildAndExpand(lancamentoSalva.getCodigo()).toUri();
+
 		return ResponseEntity.created(uri).body(lancamentoSalva);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<Lancamento>> listar(){
-		List<Lancamento> lancamentos = lancamentoService.listar();
-		return ResponseEntity.ok().body(lancamentos);
+	public ResponseEntity<List<ResumoLancamentoDTO>> resumir(LancamentoFilter lancamentoFilter) {
+		List<ResumoLancamentoDTO> resumos = lancamentoService.resumir(lancamentoFilter);
+		return ResponseEntity.ok().body(resumos);
 	}
-	
+
 	@GetMapping(value = "/{codigo}")
-	public ResponseEntity<Lancamento> buscarPorCodigo(@PathVariable Long codigo){
+	public ResponseEntity<Lancamento> buscarPorCodigo(@PathVariable Long codigo) {
 		Lancamento lancamento = lancamentoService.buscarPorCodigo(codigo);
 		return ResponseEntity.ok().body(lancamento);
 	}
-	
-	@DeleteMapping(value="/{codigo}")
-	public ResponseEntity<Void> excluir(@PathVariable Long codigo){
+
+	@DeleteMapping(value = "/{codigo}")
+	public ResponseEntity<Void> excluir(@PathVariable Long codigo) {
 		lancamentoService.excluir(codigo);
 		return ResponseEntity.noContent().build();
 	}
-	
-	@PutMapping(value="/{codigo}")
-	public ResponseEntity<Lancamento> atualizar(@PathVariable Long codigo, @RequestBody Lancamento lancamento){
+
+	@PutMapping(value = "/{codigo}")
+	public ResponseEntity<Lancamento> atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento lancamento) {
 		Lancamento lancamentoSalva = lancamentoService.atualizar(codigo, lancamento);
 		return ResponseEntity.ok().body(lancamentoSalva);
+
 	}
+
 }
