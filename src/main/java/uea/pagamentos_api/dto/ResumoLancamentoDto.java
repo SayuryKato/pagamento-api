@@ -1,33 +1,35 @@
-package uea.pagamentos_api_dto;
+package uea.pagamentos_api.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import uea.pagamentos_api.models.enums.TipoLancamento;
 
-public class ResumoLancamentoDTO {
-
+public class ResumoLancamentoDto {
 	private Long codigo;
 	private String descricao;
 	private LocalDate dataVencimento;
 	private LocalDate dataPagamento;
 	private BigDecimal valor;
-	private TipoLancamento tipoLancamento;
+	private TipoLancamento tipo;
 	private String categoria;
 	private String pessoa;
 	
-	public ResumoLancamentoDTO() {
+
+	public ResumoLancamentoDto() {
+		super();
+
 	}
 
-	public ResumoLancamentoDTO(Long codigo, String descricao, LocalDate dataVencimento, LocalDate dataPagamento,
-			BigDecimal valor, TipoLancamento tipoLancamento, String categoria, String pessoa) {
+	public ResumoLancamentoDto(Long codigo, String descricao, LocalDate dataVencimento, LocalDate dataPagamento,
+			BigDecimal valor, TipoLancamento tipo, String categoria, String pessoa) {
 		super();
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.dataVencimento = dataVencimento;
 		this.dataPagamento = dataPagamento;
 		this.valor = valor;
-		this.tipoLancamento = tipoLancamento;
+		this.tipo = tipo;
 		this.categoria = categoria;
 		this.pessoa = pessoa;
 	}
@@ -72,12 +74,12 @@ public class ResumoLancamentoDTO {
 		this.valor = valor;
 	}
 
-	public TipoLancamento getTipoLancamento() {
-		return tipoLancamento;
+	public TipoLancamento getTipo() {
+		return tipo;
 	}
 
-	public void setTipoLancamento(TipoLancamento tipoLancamento) {
-		this.tipoLancamento = tipoLancamento;
+	public void setTipo(TipoLancamento tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getCategoria() {
@@ -95,7 +97,5 @@ public class ResumoLancamentoDTO {
 	public void setPessoa(String pessoa) {
 		this.pessoa = pessoa;
 	}
-	
-	
 
 }

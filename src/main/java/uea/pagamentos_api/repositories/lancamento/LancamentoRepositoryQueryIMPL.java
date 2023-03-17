@@ -11,23 +11,24 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import uea.pagamentos_api.dto.ResumoLancamentoDto;
 import uea.pagamentos_api.models.Lancamento;
 import uea.pagamentos_api.repositories.filters.LancamentoFilter;
-import uea.pagamentos_api_dto.ResumoLancamentoDTO;
 
-public class LancamentoRepositoryQueryIMPL implements LancamentoRepositoryQuery{
+public class LancamentoRepositoryQueryImpl 
+implements LancamentoRepositoryQuery{
 	
 	@PersistenceContext
 	private EntityManager manager;
 
 	@Override
-	public List<ResumoLancamentoDTO> filtrar(LancamentoFilter lancamentoFilter) {
+	public List<ResumoLancamentoDto> filtrar(LancamentoFilter lancamentoFilter) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		
-		CriteriaQuery<ResumoLancamentoDTO> criteria = builder.createQuery(ResumoLancamentoDTO.class);
+		CriteriaQuery<ResumoLancamentoDto> criteria = builder.createQuery(ResumoLancamentoDto.class);
 		Root<Lancamento> root = criteria.from(Lancamento.class);
 		
-		criteria.select(builder.construct(ResumoLancamentoDTO.class, root.get("codigo"), root.get("descricao"),
+		criteria.select(builder.construct(ResumoLancamentoDto.class, root.get("codigo"), root.get("descricao"),
 				root.get("dataVencimento"), root.get("dataPagamento"), root.get("valor"), root.get("tipo"),
 				root.get("categoria").get("nome"), root.get("pessoa").get("nome")));
 		
@@ -36,7 +37,7 @@ public class LancamentoRepositoryQueryIMPL implements LancamentoRepositoryQuery{
 			criteria.where(predicates);
 		}
 		
-		List<ResumoLancamentoDTO> returnList = manager.createQuery(criteria).getResultList();
+		List<ResumoLancamentoDto> returnList = manager.createQuery(criteria).getResultList();
 		
 		return returnList;
 	}

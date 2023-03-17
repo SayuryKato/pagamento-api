@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.validation.Valid;
+import uea.pagamentos_api.dto.ResumoLancamentoDto;
 import uea.pagamentos_api.models.Lancamento;
 import uea.pagamentos_api.repositories.filters.LancamentoFilter;
 import uea.pagamentos_api.services.LancamentoService;
-import uea.pagamentos_api_dto.ResumoLancamentoDTO;
 
 
 @RestController
@@ -42,8 +42,8 @@ public class LancamentoResource {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<ResumoLancamentoDTO>> resumir(LancamentoFilter lancamentoFilter) {
-		List<ResumoLancamentoDTO> resumos = lancamentoService.resumir(lancamentoFilter);
+	public ResponseEntity<List<ResumoLancamentoDto>> resumir(LancamentoFilter lancamentoFilter) {
+		List<ResumoLancamentoDto> resumos = lancamentoService.resumir(lancamentoFilter);
 		return ResponseEntity.ok().body(resumos);
 	}
 

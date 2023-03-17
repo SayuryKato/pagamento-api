@@ -44,9 +44,8 @@ public class Lancamento implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="codigo_categoria")
 	private Categoria categoria;
-	
-	@AssertTrue
-	@JsonIgnoreProperties({"endereco"})
+
+	@JsonIgnoreProperties({"endereco","ativo"})
 	@NotNull(message = "Pessoa é obrigatório")
 	@ManyToOne
 	@JoinColumn(name="codigo_pessoa")

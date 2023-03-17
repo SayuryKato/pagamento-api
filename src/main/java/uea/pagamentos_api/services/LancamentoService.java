@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uea.pagamentos_api.dto.ResumoLancamentoDto;
 import uea.pagamentos_api.models.Categoria;
 import uea.pagamentos_api.models.Lancamento;
 import uea.pagamentos_api.models.Pessoa;
@@ -14,7 +15,6 @@ import uea.pagamentos_api.repositories.LancamentoRepository;
 import uea.pagamentos_api.repositories.PessoaRepository;
 import uea.pagamentos_api.repositories.filters.LancamentoFilter;
 import uea.pagamentos_api.services.exceptions.PessoaInativaException;
-import uea.pagamentos_api_dto.ResumoLancamentoDTO;
 
 @Service
 public class LancamentoService {
@@ -28,7 +28,7 @@ public class LancamentoService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
-	public List<ResumoLancamentoDTO> resumir(LancamentoFilter lancamentoFilter){
+	public List<ResumoLancamentoDto> resumir(LancamentoFilter lancamentoFilter){
 		return lancamentoRepository.filtrar(lancamentoFilter);
 	}
 	
