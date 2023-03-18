@@ -20,10 +20,12 @@ public class Pessoa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+	
 	@NotBlank(message = "Nome é obrigatório")
 	@Size(min=5, max=30, message = "Nome deve ter"
 			+ " tamnho entre 5 e 30")
 	private String nome;
+	
 	@NotNull(message = "Ativo é obrigatório")
 	private Boolean ativo;
 	
