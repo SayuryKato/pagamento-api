@@ -34,10 +34,8 @@ public class LancamentoResource {
 	@PostMapping
 	public ResponseEntity<Lancamento> criar(@Valid @RequestBody Lancamento lancamento) {
 		Lancamento lancamentoSalva = lancamentoService.criar(lancamento);
-
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{codigo}")
 				.buildAndExpand(lancamentoSalva.getCodigo()).toUri();
-
 		return ResponseEntity.created(uri).body(lancamentoSalva);
 	}
 
