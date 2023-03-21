@@ -1,17 +1,17 @@
 package uea.pagamentos_api.dto;
 
-public class ResumoPessoasDto {
+public class ResumoPessoaDto {
 	
 	private Long codigo;
 	private String nome;
 	private Boolean ativo;
 	private String endereco;
 	
-	public ResumoPessoasDto() {
+	public ResumoPessoaDto() {
 		super();
 	}
 
-	public ResumoPessoasDto(Long codigo, String nome, Boolean ativo, String endereco) {
+	public ResumoPessoaDto(Long codigo, String nome, Boolean ativo, String endereco) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;

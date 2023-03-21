@@ -1,13 +1,13 @@
 package uea.pagamentos_api.repositories.pessoa;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import uea.pagamentos_api.dto.ResumoPessoasDto;
-import uea.pagamentos_api.repositories.filters.PessoasFilter;
+import uea.pagamentos_api.dto.ResumoPessoaDto;
+import uea.pagamentos_api.repositories.filters.PessoaFilter;
 
 public interface PessoasRepositoryQuery {
 
-	public List<ResumoPessoasDto> filtrarPessoas(
-			PessoasFilter pessoasFilter);
+	public Page<ResumoPessoaDto> filtrar(PessoaFilter pessoasFilter, Pageable pageable);
 
 }

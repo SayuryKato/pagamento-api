@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import uea.pagamentos_api.dto.ResumoPessoasDto;
+import uea.pagamentos_api.dto.ResumoPessoaDto;
 import uea.pagamentos_api.models.Endereco;
 import uea.pagamentos_api.models.Pessoa;
 import uea.pagamentos_api.repositories.PessoaRepository;
-import uea.pagamentos_api.repositories.filters.PessoasFilter;
+import uea.pagamentos_api.repositories.filters.PessoaFilter;
 
 @Service
 public class PessoaService {
@@ -18,8 +20,8 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
-	public List<ResumoPessoasDto> resumir(PessoasFilter pessoasFilter){
-		return pessoaRepository.filtrarPessoas(pessoasFilter);
+	public Page<ResumoPessoaDto> resumir(PessoaFilter pessoasFilter, Pageable pageable){
+		return pessoaRepository.filtrar(pessoasFilter, pageable);
 	}
 	
 	public Pessoa criar(Pessoa pessoa) {
